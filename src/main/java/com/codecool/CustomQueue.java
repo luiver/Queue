@@ -7,12 +7,18 @@ public class CustomQueue {
     public CustomQueue() {
     }
 
-    public void enqueue(String value) {
+    public void enqueue(String value, Integer priority) {
         Node node = new Node(value);
-        if (tail != null) {
-            tail.setNextNode(node);
+        if (priority > 0) {
+            Node currentHead = head;
+            head = node;
+            head.setNextNode(currentHead);
+        } else {
+            if (tail != null) {
+                tail.setNextNode(node);
+            }
+            tail = node;
         }
-        tail = node;
         if (isEmpty()) {
             head = node;
         }
