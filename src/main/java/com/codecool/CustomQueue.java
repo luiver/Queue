@@ -18,11 +18,14 @@ public class CustomQueue {
         }
     }
 
-    public String peek() {
+    public String peek() throws Exception {
+        if (isEmpty()){
+            throw new Exception("Queue is empty");
+        }
         return head.getValue();
     }
 
-    public String dequeue() {
+    public String dequeue() throws Exception {
         String value = peek();
         head = head.getNextNode();
         if (isEmpty()) {
